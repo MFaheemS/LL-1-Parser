@@ -1,0 +1,116 @@
+Input File: input/input_valid.txt
+
+Input Line 1: id + id * id
+Expr
+  Term
+    Factor
+      id
+    TermPrime
+      epsilon
+  ExprPrime
+    +
+    Term
+      Factor
+        id
+      TermPrime
+        *
+        Factor
+          id
+        TermPrime
+          epsilon
+    ExprPrime
+      epsilon
+
+--------------------------------------------------------------------------------
+
+Input Line 2: ( id + id ) * id
+Expr
+  Term
+    Factor
+      (
+      Expr
+        Term
+          Factor
+            id
+          TermPrime
+            epsilon
+        ExprPrime
+          +
+          Term
+            Factor
+              id
+            TermPrime
+              epsilon
+          ExprPrime
+            epsilon
+      )
+    TermPrime
+      *
+      Factor
+        id
+      TermPrime
+        epsilon
+  ExprPrime
+    epsilon
+
+--------------------------------------------------------------------------------
+
+Input Line 3: id * id + id
+Expr
+  Term
+    Factor
+      id
+    TermPrime
+      *
+      Factor
+        id
+      TermPrime
+        epsilon
+  ExprPrime
+    +
+    Term
+      Factor
+        id
+      TermPrime
+        epsilon
+    ExprPrime
+      epsilon
+
+--------------------------------------------------------------------------------
+
+Input Line 4: id
+Expr
+  Term
+    Factor
+      id
+    TermPrime
+      epsilon
+  ExprPrime
+    epsilon
+
+--------------------------------------------------------------------------------
+
+Input Line 5: ( id )
+Expr
+  Term
+    Factor
+      (
+      Expr
+        Term
+          Factor
+            id
+          TermPrime
+            epsilon
+        ExprPrime
+          epsilon
+      )
+    TermPrime
+      epsilon
+  ExprPrime
+    epsilon
+
+====================================================================================================
+
+Input File: input/input_errors.txt
+
+No accepted strings in this file.

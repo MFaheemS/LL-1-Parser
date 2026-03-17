@@ -1,8 +1,12 @@
 # LL(1) Parser Assignment Part 1 Guide
 
-## What This Project Does
+## What This Guide Covers
 
-This Java project implements only **Part 1** of the assignment.
+This document explains the **Part 1** pipeline of the project.
+
+The repository now includes both Part 1 and Part 2 implementation. Part 2 parsing,
+error handling, and parse tree generation are implemented in additional files such as
+`Parser.java`, `Stack.java`, `Tree.java`, and `ErrorHandler.java`.
 
 It performs these steps:
 
@@ -35,11 +39,15 @@ CC 2/
 ├── out/
 │   └── compiled .class files
 └── src/
+    ├── ErrorHandler.java
     ├── FirstFollow.java
     ├── Grammar.java
     ├── GrammarTransformer.java
     ├── Main.java
-    └── ParsingTable.java
+    ├── Parser.java
+    ├── ParsingTable.java
+    ├── Stack.java
+    └── Tree.java
 ```
 
 ## How To Compile

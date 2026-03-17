@@ -63,6 +63,28 @@ public class ParsingTable {
         return Collections.unmodifiableList(conflicts);
     }
 
+    public List<String> getTerminalsInOrder() {
+        return Collections.unmodifiableList(terminals);
+    }
+
+    public List<String> getProduction(String nonTerminal, String terminal) {
+        LinkedHashMap<String, List<String>> row = table.get(nonTerminal);
+        if (row == null) {
+            return null;
+        }
+
+        List<String> production = row.get(terminal);
+        if (production == null) {
+            return null;
+        }
+
+        return Collections.unmodifiableList(production);
+    }
+
+    public boolean hasEntry(String nonTerminal, String terminal) {
+        return getProduction(nonTerminal, terminal) != null;
+    }
+
     public String formatTable() {
         StringBuilder builder = new StringBuilder();
         builder.append("LL(1) Parsing Table").append(System.lineSeparator());

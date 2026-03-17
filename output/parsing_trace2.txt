@@ -1,0 +1,117 @@
+Input File: input/input_errors.txt
+
+Input Line 1: id + * id
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Expr                        | id + * id $                   | Expr -> Term ExprPrime
+2     | $ ExprPrime Term              | id + * id $                   | Term -> Factor TermPrime
+3     | $ ExprPrime TermPrime Factor  | id + * id $                   | Factor -> id
+4     | $ ExprPrime TermPrime id      | id + * id $                   | Match id
+5     | $ ExprPrime TermPrime         | + * id $                      | TermPrime -> epsilon
+6     | $ ExprPrime                   | + * id $                      | ExprPrime -> + Term ExprPrime
+7     | $ ExprPrime Term +            | + * id $                      | Match +
+8     | $ ExprPrime Term              | * id $                        | ERROR: Unexpected *. Expected: ( or id. Skipping *
+9     | $ ExprPrime Term              | id $                          | Term -> Factor TermPrime
+10    | $ ExprPrime TermPrime Factor  | id $                          | Factor -> id
+11    | $ ExprPrime TermPrime id      | id $                          | Match id
+12    | $ ExprPrime TermPrime         | $                             | TermPrime -> epsilon
+13    | $ ExprPrime                   | $                             | ExprPrime -> epsilon
+14    | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 1, Column 3: Unexpected symbol | Expected: ( or id | Found: *
+
+==============================================================================================================
+
+Input Line 2: ( id + id * id
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Expr                        | ( id + id * id $              | Expr -> Term ExprPrime
+2     | $ ExprPrime Term              | ( id + id * id $              | Term -> Factor TermPrime
+3     | $ ExprPrime TermPrime Factor  | ( id + id * id $              | Factor -> ( Expr )
+4     | $ ExprPrime TermPrime ) Expr (| ( id + id * id $              | Match (
+5     | $ ExprPrime TermPrime ) Expr  | id + id * id $                | Expr -> Term ExprPrime
+6     | $ ExprPrime TermPrime ) ExprPrime Term| id + id * id $                | Term -> Factor TermPrime
+7     | $ ExprPrime TermPrime ) ExprPrime TermPrime Factor| id + id * id $                | Factor -> id
+8     | $ ExprPrime TermPrime ) ExprPrime TermPrime id| id + id * id $                | Match id
+9     | $ ExprPrime TermPrime ) ExprPrime TermPrime| + id * id $                   | TermPrime -> epsilon
+10    | $ ExprPrime TermPrime ) ExprPrime| + id * id $                   | ExprPrime -> + Term ExprPrime
+11    | $ ExprPrime TermPrime ) ExprPrime Term +| + id * id $                   | Match +
+12    | $ ExprPrime TermPrime ) ExprPrime Term| id * id $                     | Term -> Factor TermPrime
+13    | $ ExprPrime TermPrime ) ExprPrime TermPrime Factor| id * id $                     | Factor -> id
+14    | $ ExprPrime TermPrime ) ExprPrime TermPrime id| id * id $                     | Match id
+15    | $ ExprPrime TermPrime ) ExprPrime TermPrime| * id $                        | TermPrime -> * Factor TermPrime
+16    | $ ExprPrime TermPrime ) ExprPrime TermPrime Factor *| * id $                        | Match *
+17    | $ ExprPrime TermPrime ) ExprPrime TermPrime Factor| id $                          | Factor -> id
+18    | $ ExprPrime TermPrime ) ExprPrime TermPrime id| id $                          | Match id
+19    | $ ExprPrime TermPrime ) ExprPrime TermPrime| $                             | TermPrime -> epsilon
+20    | $ ExprPrime TermPrime ) ExprPrime| $                             | ExprPrime -> epsilon
+21    | $ ExprPrime TermPrime )       | $                             | ERROR: Premature end of input. Missing )
+22    | $ ExprPrime TermPrime         | $                             | TermPrime -> epsilon
+23    | $ ExprPrime                   | $                             | ExprPrime -> epsilon
+24    | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 2, Column 7: Premature end of input | Expected: ) | Found: $
+
+==============================================================================================================
+
+Input Line 3: id id
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Expr                        | id id $                       | Expr -> Term ExprPrime
+2     | $ ExprPrime Term              | id id $                       | Term -> Factor TermPrime
+3     | $ ExprPrime TermPrime Factor  | id id $                       | Factor -> id
+4     | $ ExprPrime TermPrime id      | id id $                       | Match id
+5     | $ ExprPrime TermPrime         | id $                          | ERROR: Unexpected id. Expected: ) or + or * or $. Skipping id
+6     | $ ExprPrime TermPrime         | $                             | TermPrime -> epsilon
+7     | $ ExprPrime                   | $                             | ExprPrime -> epsilon
+8     | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 3, Column 2: Unexpected symbol | Expected: ) or + or * or $ | Found: id
+
+==============================================================================================================
+
+Input Line 4: + id
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Expr                        | + id $                        | ERROR: Unexpected +. Expected: ( or id. Skipping +
+2     | $ Expr                        | id $                          | Expr -> Term ExprPrime
+3     | $ ExprPrime Term              | id $                          | Term -> Factor TermPrime
+4     | $ ExprPrime TermPrime Factor  | id $                          | Factor -> id
+5     | $ ExprPrime TermPrime id      | id $                          | Match id
+6     | $ ExprPrime TermPrime         | $                             | TermPrime -> epsilon
+7     | $ ExprPrime                   | $                             | ExprPrime -> epsilon
+8     | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 4, Column 1: Unexpected symbol | Expected: ( or id | Found: +
+
+==============================================================================================================
+
+Input Line 5: id * ) id
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Expr                        | id * ) id $                   | Expr -> Term ExprPrime
+2     | $ ExprPrime Term              | id * ) id $                   | Term -> Factor TermPrime
+3     | $ ExprPrime TermPrime Factor  | id * ) id $                   | Factor -> id
+4     | $ ExprPrime TermPrime id      | id * ) id $                   | Match id
+5     | $ ExprPrime TermPrime         | * ) id $                      | TermPrime -> * Factor TermPrime
+6     | $ ExprPrime TermPrime Factor *| * ) id $                      | Match *
+7     | $ ExprPrime TermPrime Factor  | ) id $                        | ERROR: No rule for Factor on ). Synchronizing by popping Factor
+8     | $ ExprPrime TermPrime         | ) id $                        | TermPrime -> epsilon
+9     | $ ExprPrime                   | ) id $                        | ExprPrime -> epsilon
+10    | $                             | ) id $                        | ERROR: Extra symbol ). Skipping )
+11    | $                             | id $                          | ERROR: Extra symbol id. Skipping id
+12    | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 3 error(s).
+Errors
+Line 5, Column 3: Synchronizing by popping non-terminal | Expected: Factor | Found: )
+Line 5, Column 3: Unexpected symbol | Expected: $ | Found: )
+Line 5, Column 4: Unexpected symbol | Expected: $ | Found: id
