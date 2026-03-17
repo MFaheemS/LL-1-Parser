@@ -61,6 +61,8 @@ Open PowerShell in the project folder and run:
 build.bat
 ```
 
+For a one-click demo on Windows, you can also double-click `demo.bat`.
+
 Equivalent manual command:
 
 ```powershell
@@ -80,6 +82,14 @@ java -cp out Main input/grammar1.txt output
 ```powershell
 java -cp out Main input/grammar2.txt output input/input_valid.txt input/input_errors.txt input/input_edge_cases.txt
 ```
+
+### One-Click Demo
+
+```powershell
+demo.bat
+```
+
+This builds the project and runs the expression-grammar demo using `input_valid.txt` and `input_errors.txt`.
 
 ### General Format
 
