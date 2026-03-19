@@ -1,0 +1,16 @@
+Original Grammar
+Expr -> Expr + Term | Term
+Term -> Term * Factor | Factor
+Factor -> ( Expr ) | id
+
+After Left Factoring
+Expr -> Expr + Term | Term
+Term -> Term * Factor | Factor
+Factor -> ( Expr ) | id
+
+After Left Recursion Removal
+Expr -> Term ExprPrime
+Term -> Factor TermPrime
+Factor -> ( Expr ) | id
+ExprPrime -> + Term ExprPrime | epsilon
+TermPrime -> * Factor TermPrime | epsilon

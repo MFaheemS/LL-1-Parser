@@ -1,0 +1,13 @@
+Original Grammar
+Stmt -> if Cond then Stmt | if Cond then Stmt else Stmt | a
+Cond -> b
+
+After Left Factoring
+Stmt -> a | if Cond then Stmt StmtPrime
+Cond -> b
+StmtPrime -> epsilon | else Stmt
+
+After Left Recursion Removal
+Stmt -> a | if Cond then Stmt StmtPrime
+Cond -> b
+StmtPrime -> epsilon | else Stmt

@@ -13,19 +13,23 @@ public class Tree {
         return root;
     }
 
-    public String toIndentedString() {
+    // Keep a single parse-tree format for submission output.
+    public String toAsciiTreeString() {
         StringBuilder builder = new StringBuilder();
-        render(root, builder, 0);
+        renderAsciiTree(root, builder, "", true);
         return builder.toString();
     }
 
-    private void render(Node node, StringBuilder builder, int depth) {
-        builder.append("  ".repeat(depth))
-            .append(node.getSymbol())
-            .append(System.lineSeparator());
+    private void renderAsciiTree(Node node, StringBuilder builder, String prefix, boolean isLast) {
+        builder.append(prefix);
+        builder.append(isLast ? "`-- " : "|-- ");
+        builder.append(node.getSymbol()).append(System.lineSeparator());
 
-        for (Node child : node.getChildren()) {
-            render(child, builder, depth + 1);
+        List<Node> children = node.getChildren();
+        for (int i = 0; i < children.size(); i++) {
+            boolean last = (i == children.size() - 1);
+            String extension = isLast ? "    " : "|   ";
+            renderAsciiTree(children.get(i), builder, prefix + extension, last);
         }
     }
 

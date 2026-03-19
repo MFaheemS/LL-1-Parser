@@ -1,0 +1,13 @@
+FIRST Sets
+FIRST(Expr)        = { (, id }
+FIRST(Term)        = { (, id }
+FIRST(Factor)      = { (, id }
+FIRST(ExprPrime)   = { +, epsilon }
+FIRST(TermPrime)   = { *, epsilon }
+
+FOLLOW Sets
+FOLLOW(Expr)       = { $, ) }
+FOLLOW(Term)       = { +, $, ) }
+FOLLOW(Factor)     = { *, +, $, ) }
+FOLLOW(ExprPrime)  = { $, ) }
+FOLLOW(TermPrime)  = { +, $, ) }

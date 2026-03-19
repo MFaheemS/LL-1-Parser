@@ -1,0 +1,9 @@
+FIRST Sets
+FIRST(Stmt)        = { a, if }
+FIRST(Cond)        = { b }
+FIRST(StmtPrime)   = { epsilon, else }
+
+FOLLOW Sets
+FOLLOW(Stmt)       = { $, else }
+FOLLOW(Cond)       = { then }
+FOLLOW(StmtPrime)  = { $, else }

@@ -266,13 +266,15 @@ public class Parser {
 
                 if (wroteTree) {
                     builder.append(System.lineSeparator());
-                    builder.append("-".repeat(80)).append(System.lineSeparator()).append(System.lineSeparator());
+                    builder.append("=".repeat(80)).append(System.lineSeparator()).append(System.lineSeparator());
                 }
 
                 builder.append("Input Line ").append(lineResult.getLineNumber()).append(": ");
                 builder.append(lineResult.getSourceLine() == null || lineResult.getSourceLine().isBlank() ? "<empty>" : lineResult.getSourceLine().trim());
-                builder.append(System.lineSeparator());
-                builder.append(lineResult.getParseTree().toIndentedString());
+                builder.append(System.lineSeparator()).append(System.lineSeparator());
+                builder.append("ASCII Parse Tree:").append(System.lineSeparator());
+                builder.append(lineResult.getParseTree().toAsciiTreeString());
+
                 wroteTree = true;
             }
 

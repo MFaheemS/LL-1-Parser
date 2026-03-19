@@ -1,0 +1,14 @@
+Original Grammar
+Start -> First Second
+First -> a | epsilon
+Second -> b
+
+After Left Factoring
+Start -> First Second
+First -> a | epsilon
+Second -> b
+
+After Left Recursion Removal
+Start -> First Second
+First -> a | epsilon
+Second -> b

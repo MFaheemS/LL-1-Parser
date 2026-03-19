@@ -1,0 +1,12 @@
+Original Grammar
+Start -> Alpha a | b
+Alpha -> Alpha c | Start d | epsilon
+
+After Left Factoring
+Start -> Alpha a | b
+Alpha -> Alpha c | Start d | epsilon
+
+After Left Recursion Removal
+Start -> Alpha a | b
+Alpha -> b d AlphaPrime | AlphaPrime
+AlphaPrime -> c AlphaPrime | a d AlphaPrime | epsilon
