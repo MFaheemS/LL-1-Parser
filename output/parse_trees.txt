@@ -1,3 +1,35 @@
+================================================================================
+Grammar 1: Simple - Parse Trees
+
+================================================================================
+
+Input File: input/input_grammar1_simple_valid_invalid_missing_extra_empty.txt
+
+Input Line 1: a b
+
+ASCII Parse Tree:
+`-- Start
+    |-- First
+    |   `-- a
+    `-- Second
+        `-- b
+
+================================================================================
+
+Input Line 2: b
+
+ASCII Parse Tree:
+`-- Start
+    |-- First
+    |   `-- epsilon
+    `-- Second
+        `-- b
+
+================================================================================
+Grammar 2: Expression - Parse Trees
+
+================================================================================
+
 Input File: input/input_grammar2_expression_valid_invalid_missing_extra_empty_error_recovery.txt
 
 Input Line 1: id + id * id
@@ -70,3 +102,4 @@ ASCII Parse Tree:
     |       `-- epsilon
     `-- ExprPrime
         `-- epsilon
+

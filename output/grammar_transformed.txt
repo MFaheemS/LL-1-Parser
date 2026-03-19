@@ -1,3 +1,28 @@
+================================================================================
+Grammar 1: Simple
+
+================================================================================
+
+Original Grammar
+Start -> First Second
+First -> a | epsilon
+Second -> b
+
+After Left Factoring
+Start -> First Second
+First -> a | epsilon
+Second -> b
+
+After Left Recursion Removal
+Start -> First Second
+First -> a | epsilon
+Second -> b
+
+================================================================================
+Grammar 2: Expression
+
+================================================================================
+
 Original Grammar
 Expr -> Expr + Term | Term
 Term -> Term * Factor | Factor
@@ -14,3 +39,41 @@ Term -> Factor TermPrime
 Factor -> ( Expr ) | id
 ExprPrime -> + Term ExprPrime | epsilon
 TermPrime -> * Factor TermPrime | epsilon
+
+================================================================================
+Grammar 3: Statement (Left Factoring)
+
+================================================================================
+
+Original Grammar
+Stmt -> if Cond then Stmt | if Cond then Stmt else Stmt | a
+Cond -> b
+
+After Left Factoring
+Stmt -> a | if Cond then Stmt StmtPrime
+Cond -> b
+StmtPrime -> epsilon | else Stmt
+
+After Left Recursion Removal
+Stmt -> a | if Cond then Stmt StmtPrime
+Cond -> b
+StmtPrime -> epsilon | else Stmt
+
+================================================================================
+Grammar 4: Indirect Left Recursion
+
+================================================================================
+
+Original Grammar
+Start -> Alpha a | b
+Alpha -> Alpha c | Start d | epsilon
+
+After Left Factoring
+Start -> Alpha a | b
+Alpha -> Alpha c | Start d | epsilon
+
+After Left Recursion Removal
+Start -> Alpha a | b
+Alpha -> b d AlphaPrime | AlphaPrime
+AlphaPrime -> c AlphaPrime | a d AlphaPrime | epsilon
+

@@ -1,8 +1,0 @@
-LL(1) Parsing Table
-NonTerminal       | a                       | b                       | $                       
----------------------------------------------------------------------------------------------------
-Start             | Start -> First Second   | Start -> First Second   |                         
-First             | First -> a              | First -> epsilon        |                         
-Second            |                         | Second -> b             |                         
-
-Grammar status: LL(1)

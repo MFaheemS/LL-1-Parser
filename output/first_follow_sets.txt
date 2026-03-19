@@ -1,3 +1,23 @@
+================================================================================
+Grammar 1: Simple
+
+================================================================================
+
+FIRST Sets
+FIRST(Start)       = { a, b }
+FIRST(First)       = { a, epsilon }
+FIRST(Second)      = { b }
+
+FOLLOW Sets
+FOLLOW(Start)      = { $ }
+FOLLOW(First)      = { b }
+FOLLOW(Second)     = { $ }
+
+================================================================================
+Grammar 2: Expression
+
+================================================================================
+
 FIRST Sets
 FIRST(Expr)        = { (, id }
 FIRST(Term)        = { (, id }
@@ -11,3 +31,34 @@ FOLLOW(Term)       = { +, $, ) }
 FOLLOW(Factor)     = { *, +, $, ) }
 FOLLOW(ExprPrime)  = { $, ) }
 FOLLOW(TermPrime)  = { +, $, ) }
+
+================================================================================
+Grammar 3: Statement (Left Factoring)
+
+================================================================================
+
+FIRST Sets
+FIRST(Stmt)        = { a, if }
+FIRST(Cond)        = { b }
+FIRST(StmtPrime)   = { epsilon, else }
+
+FOLLOW Sets
+FOLLOW(Stmt)       = { $, else }
+FOLLOW(Cond)       = { then }
+FOLLOW(StmtPrime)  = { $, else }
+
+================================================================================
+Grammar 4: Indirect Left Recursion
+
+================================================================================
+
+FIRST Sets
+FIRST(Start)       = { b, c, a }
+FIRST(Alpha)       = { b, c, a, epsilon }
+FIRST(AlphaPrime)  = { c, a, epsilon }
+
+FOLLOW Sets
+FOLLOW(Start)      = { $ }
+FOLLOW(Alpha)      = { a }
+FOLLOW(AlphaPrime) = { a }
+

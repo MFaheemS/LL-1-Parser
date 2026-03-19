@@ -1,3 +1,115 @@
+================================================================================
+Grammar 1: Simple - Parsing Trace
+
+================================================================================
+
+Input File: input/input_grammar1_simple_valid_invalid_missing_extra_empty.txt
+
+Input Line 1: a b
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Start                       | a b $                         | Start -> First Second
+2     | $ Second First                | a b $                         | First -> a
+3     | $ Second a                    | a b $                         | Match a
+4     | $ Second                      | b $                           | Second -> b
+5     | $ b                           | b $                           | Match b
+6     | $                             | $                             | Accept
+
+Result: String accepted successfully!
+==============================================================================================================
+
+Input Line 2: b
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Start                       | b $                           | Start -> First Second
+2     | $ Second First                | b $                           | First -> epsilon
+3     | $ Second                      | b $                           | Second -> b
+4     | $ b                           | b $                           | Match b
+5     | $                             | $                             | Accept
+
+Result: String accepted successfully!
+==============================================================================================================
+
+Input Line 3: a
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Start                       | a $                           | Start -> First Second
+2     | $ Second First                | a $                           | First -> a
+3     | $ Second a                    | a $                           | Match a
+4     | $ Second                      | $                             | ERROR: Premature end of input while parsing Second. Synchronizing by popping Second
+5     | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 3, Column 2: Premature end of input | Expected: Second | Found: $
+
+==============================================================================================================
+
+Input Line 4: a b b
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Start                       | a b b $                       | Start -> First Second
+2     | $ Second First                | a b b $                       | First -> a
+3     | $ Second a                    | a b b $                       | Match a
+4     | $ Second                      | b b $                         | Second -> b
+5     | $ b                           | b b $                         | Match b
+6     | $                             | b $                           | ERROR: Extra symbol b. Skipping b
+7     | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 4, Column 3: Unexpected symbol | Expected: $ | Found: b
+
+==============================================================================================================
+
+Input Line 5: b a
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Start                       | b a $                         | Start -> First Second
+2     | $ Second First                | b a $                         | First -> epsilon
+3     | $ Second                      | b a $                         | Second -> b
+4     | $ b                           | b a $                         | Match b
+5     | $                             | a $                           | ERROR: Extra symbol a. Skipping a
+6     | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 5, Column 2: Unexpected symbol | Expected: $ | Found: a
+
+==============================================================================================================
+
+Input Line 6: <empty>
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Start                       | $                             | ERROR: Premature end of input while parsing Start. Synchronizing by popping Start
+2     | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 6, Column 1: Premature end of input | Expected: Start | Found: $
+
+==============================================================================================================
+
+Input Line 7: a a b
+Step  | Stack                         | Input                         | Action
+--------------------------------------------------------------------------------------------------------------
+1     | $ Start                       | a a b $                       | Start -> First Second
+2     | $ Second First                | a a b $                       | First -> a
+3     | $ Second a                    | a a b $                       | Match a
+4     | $ Second                      | a b $                         | ERROR: Unexpected a. Expected: b. Skipping a
+5     | $ Second                      | b $                           | Second -> b
+6     | $ b                           | b $                           | Match b
+7     | $                             | $                             | Accept (after recovery)
+
+Result: Parsing completed with 1 error(s).
+Errors
+Line 7, Column 2: Unexpected symbol | Expected: b | Found: a
+
+================================================================================
+Grammar 2: Expression - Parsing Trace
+
+================================================================================
+
 Input File: input/input_grammar2_expression_valid_invalid_missing_extra_empty_error_recovery.txt
 
 Input Line 1: id + id * id
@@ -235,3 +347,4 @@ Step  | Stack                         | Input                         | Action
 Result: Parsing completed with 1 error(s).
 Errors
 Line 11, Column 2: Synchronizing by popping non-terminal | Expected: Expr | Found: )
+
