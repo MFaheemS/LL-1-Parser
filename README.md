@@ -1,8 +1,8 @@
 # LL(1) Parser - README
 
 ## Team Members with Roll Numbers
-- Member 1: <Name> - <Roll Number>
-- Member 2: <Name> - <Roll Number>
+- Member 1: Faheem - 23i-0728
+- Member 2: Humayun - 23i-0832
 
 ## Programming Language Used
 Java
